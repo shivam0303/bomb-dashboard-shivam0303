@@ -1,8 +1,17 @@
 import React from "react";
+import useStatsForPool from '../../../hooks/useStatsForPool';
+import useBank from '../../../hooks/useBank';
+import {Typography} from '@material-ui/core';
 
-function section3(){
+
+const Section3 = () =>{
+  const bankId = "BombBtcbLPBShareRewardPool"; 
+  const bank = useBank(bankId);
+  let statsOnPool = useStatsForPool(bank);
+
     return(
         <>
+        {console.log(statsOnPool)}
         <div className='section-3 body-margin'>
           <div style={{display:"flex"}}>
             <div className="section-2-boardroom-header">
@@ -29,7 +38,9 @@ function section3(){
             <div className="bomb-farms-t1">
               <span>
                 <div>Daily Returns</div>
-                <div>2%</div>
+                <div>
+                <Typography>{bank.closedForStaking ? '0.00' : statsOnPool?.dailyAPR}%</Typography>  
+                </div>
               </span>
               <span>
                 <div>Your Stake</div>
@@ -86,4 +97,4 @@ function section3(){
     );
 }
 
-export default section3;
+export default Section3;

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
 const Bank: React.FC = () => {
   useEffect(() => window.scrollTo(0, 0));
   const classes = useStyles();
-  const {bankId} = useParams();
+  const {bankId} = useParams(); 
   const bank = useBank(bankId);
 
   const {account} = useWallet();
@@ -40,6 +40,9 @@ const Bank: React.FC = () => {
 
 
    let statsOnPool = useStatsForPool(bank);
+
+   console.log(bank)
+
   // console.log(statsOnPool);
 
   //   if (bank.depositTokenName.includes('80BOMB-20BTCB-LP') || bank.depositTokenName.includes('80BSHARE-20WBNB-LP')) {

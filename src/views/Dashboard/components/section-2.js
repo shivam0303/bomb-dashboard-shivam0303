@@ -1,6 +1,14 @@
 import React from "react";
+import useFetchBoardroomAPR from '../../../hooks/useFetchBoardroomAPR';
+import { getDisplayBalance } from '../../../utils/formatBalance';
+import useTotalStakedOnBoardroom from '../../../hooks/useTotalStakedOnBoardroom';
 
-function section2(){
+
+const Section2 = () =>{
+
+  const boardroomAPR = useFetchBoardroomAPR();
+  const totalStaked = useTotalStakedOnBoardroom();
+
     return(
         <>
         <div className="section-2 body-margin">
@@ -17,19 +25,29 @@ function section2(){
               <div className="section-2-boardroom ">
                 <div className="section-2-boardroom-header ">
                   <div className='section-2-boardroom-data-1'>Boardroom</div>
-                  {/* add recommended */}
+
+{/* add recommended */}
+
                   <div className='section-2-boardroom-data'>
                   <div className='section-2-boardroom-data-2'>Stake BSHARE and earn BOMB every epoch</div>
+                  
+{/* UPDATE TVL  */}
                   <div className='section-2-boardroom-data-3'>TVL:$1,008,430</div>
                   </div>
                   <hr />
                 </div>
-                
+             
                 <div style={{display:"flex", margin:"2rem"}}>
                 <div className="section-2-boardroom-data-4">
                   <div>Daily Returns</div>
-                  <div>2%</div>
+                  <div>
+                  {boardroomAPR.toFixed(2)}%
+                  </div>
                 </div>
+        
+
+{/* ADD STAKED AND EARNED FROM BOARDROOM */}
+
                 <div className="section-2-boardroom-data-4">
                   <div>Your Stake:</div>
                   <div>6.0000</div>
@@ -41,7 +59,7 @@ function section2(){
                   <div>= $298.88</div>
                 </div>
                 <div className="section-2-staked ">
-                  <div className="section-2-staked-heading">total staked:7232</div>
+                  <div className="section-2-staked-heading">total staked : {getDisplayBalance(totalStaked)}</div>
                   <div className='section-2-span-container'>
                     <div className='section-2-deposit'>deposit</div>
                     <div className='section-2-deposit'>Withdraw</div>
@@ -66,4 +84,4 @@ function section2(){
     );
 }
 
-export default section2;
+export default Section2;

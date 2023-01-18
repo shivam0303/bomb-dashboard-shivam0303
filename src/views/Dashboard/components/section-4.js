@@ -1,6 +1,12 @@
 import React from "react";
+import {getDisplayBalance} from '../../../utils/formatBalance';
+import useBondsPurchasable from '../../../hooks/useBondsPurchasable';
+import useBondStats from '../../../hooks/useBondStats';
 
-function section4() {
+const Section4 = () =>{
+    const bondStat = useBondStats();
+    const bondsPurchasable = useBondsPurchasable();
+
     return (
         <>
             <div className='section-4 body-margin'>
@@ -20,12 +26,14 @@ function section4() {
                             Current Price : Bomb^2
                         </div>
                         <div className='section-4-grid-1-bottom'>
-                            BBOND = 6.2872 BTCB
+                            10,000 BBOND = {Number(bondStat?.tokenInFtm).toFixed(4) || '-'} BTC
                         </div>
                     </div>
                     <div className="section-4-grid-2">
                         <div>Available to redeem</div>
-                        <div className="section-4-token-amount">456</div>
+                        <div className="section-4-token-amount">
+                            {getDisplayBalance(bondsPurchasable, 18, 4)}
+                        </div>
                     </div>
                     <div className="section-4-info-3-container">
                         <div className='section-4-purchase'>
@@ -53,4 +61,4 @@ function section4() {
     );
 }
 
-export default section4;
+export default Section4;
