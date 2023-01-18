@@ -1,0 +1,375 @@
+body {
+  background: #0C1125;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  color: #fff;
+}
+
+span {
+  margin: 0 5px;
+  padding-left: 20px;
+}
+
+hr {
+  margin: 0 5%;
+  opacity: 60%;
+}
+
+.big-text{
+  font-family: 'Nunito';
+  font-size: 20px;
+  font-weight:bold;
+  padding:2px;
+}
+
+.body-margin{
+  margin-left:196px;
+  margin-right:196px;
+}
+.section1 {
+  background: rgba(32, 37, 67, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+}
+
+.section1-header {
+  position: relative;
+  text-align: center;
+
+  margin: 1.2rem;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 30px;
+
+  margin-bottom: 5px;
+  padding-top: 10px;
+  /* identical to box height */
+
+  color: #FFFFFF;
+}
+
+.section1-info {
+  display: flex;
+  margin: 20px;
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+}
+
+.section1-table-custom {
+  margin: 10px 20px;
+  padding-bottom: 1.2rem;
+}
+
+th {
+  padding: 10px;
+  text-align: center;
+}
+
+td {
+  padding: 10px;
+  font-size: 14px;
+  text-align: center;
+}
+
+
+.section1-info-right {
+  width: 20%;
+}
+
+.section1-info-left {
+  width: 80%;
+}
+
+.section-2 {
+  display: flex;
+  margin-top: 20px;
+}
+
+.section-2-heading {
+  text-align: right;
+}
+
+.section-2-invest {
+  font-weight: bold;
+  margin-bottom:5px;
+  font-size: 24px;
+  padding: 5px;
+  background: radial-gradient(59345.13% 4094144349.28% at 39511.5% -2722397851.45%, rgba(0, 245, 171, 0.5) 0%, rgba(0, 173, 232, 0.5) 100%)
+}
+
+.section-2-discord {
+  margin-bottom:5px;
+  margin-right:5px;
+  color: black;
+  width:50%;
+  font-weight: bolder;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #728CDF;
+  backdrop-filter: blur(12.5px);
+  padding: 5px;
+}
+
+.section-2-docs {
+  margin-left:5px;
+  margin-bottom:5px;
+  color: black;
+  width :50%;
+  font-weight: bolder;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid #728CDF;
+  backdrop-filter: blur(12.5px);
+  padding: 5px;
+}
+
+.section-2-span {
+  margin: 0 5px;
+  padding: 0%;
+  width: fit-content;
+}
+
+.section-2-boardroom {
+  background: rgba(32, 37, 67, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  border: 1px solid #728CDF;
+  padding-bottom: 20px;
+}
+
+.section-2-boardroom-data-1 {
+  width: 100%;
+  padding: 5px 0px 0px 15px;
+  font-weight: 700;
+  font-size: 22px;
+  text-align: left;
+}
+
+.section-2-boardroom-data {
+  display: flex;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.section-2-boardroom-data-2 {
+  text-align: left;
+  width: 50%;
+  padding-left: 15px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.section-2-boardroom-data-3 {
+  margin-right:3rem;
+  text-align: right;
+  width: 50%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 19px;
+}
+
+.section-2-boardroom-data-4{
+  width:25%
+}
+
+.section-2-boardroom-header {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.section-2-left {
+  width: 70%;
+  text-align: center;
+  margin-right: 20px;
+}
+
+.section-2-staked{
+  width:50%;
+  margin-top: -1.5rem;
+}
+.section-2-staked-heading{
+  margin-bottom: 15px;
+}
+.section-2-deposit{
+  word-wrap:break-word;
+  width: 45%;
+  margin-right: 4%;
+  padding: 5px;
+  border: 2px solid #fff;
+  border-radius: 15%;
+}
+.section-2-span-container{
+  width: 100%;
+  display: flex;
+}
+.section-2-claimrewards{
+  margin-left: 0%;
+  margin-top: 10px;
+  margin-right: 5px;
+  padding: 2px;
+  border: 2px solid #fff;
+  border-radius: 15%;
+}
+
+.section-2-right {
+  background: rgba(32, 37, 67, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  border: 1px solid #728CDF;
+  width: 30%;
+  text-align: left;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 1rem;
+}
+
+.section-3 {
+  background: rgba(32, 37, 67, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid #728CDF;
+  border-radius: 5px;
+  margin-top: 20px;
+  padding: 10px;
+}
+.Bomb-Farms-claim{
+  width: 10%;
+  margin-left: auto; 
+  margin-right: 28px;
+  margin-top: 5px;
+  margin-bottom: 2rem;
+  padding-top: 10px;
+  border: 2px solid #fff;
+  border-radius: 15%;
+}
+
+.section-3-info-head-left{
+  margin-left: 15px;
+  margin-right:auto;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+  padding: 5px;
+}
+
+.section-3-info-head-right{
+  text-align: end;
+  margin-right: 28px;
+  padding: 5px;
+}
+.section-3-div{
+  display: flex;
+  margin-left: auto;
+  margin-right: 28px;
+}
+.section-3-div-btn{
+  margin: 2rem 5px;
+  width: fit-content;
+  padding: 10px;
+  border: 2px solid #fff;
+  border-radius: 15%;
+}
+
+.bomb-farms-t1 {
+  display: flex;
+  padding:1.2rem;
+}
+
+.section-4 {
+  background: rgba(32, 37, 67, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #728CDF;
+  padding-bottom: 2rem;
+}
+
+.section-4-purchase {
+  display: flex;
+  padding: 5px;
+  margin-left: 2rem;
+}
+
+.section-4-header{
+  margin-left: 28px;
+  margin-bottom:2.5rem;
+  padding-top: 10px;
+  padding-bottom:2px;
+}
+.section-4-data-2{
+  text-align:left;
+  margin-left:15px;
+}
+
+.section-4-bonds{
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.section-4-grid{
+  margin: 15px;
+  padding: 5px;
+}
+
+.section-4-grid-1{
+  width:30%
+}
+
+.section-4-grid-1-top{
+  text-align:left;
+  height: 40%;
+  margin-left: 35px;
+}.section-4-grid-1-bottom {
+  height: 40%;
+  text-align:left;
+  margin-left: 35px;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 30px;
+}
+
+.section-4-token-amount{
+  font-style: normal;
+font-weight: 600;
+font-size: 36px;
+line-height: 49px;
+}
+.section-4-info-3-container{
+  padding: 5px;
+  width:40%;
+  margin-left:auto;
+  margin-right:28px;
+}
+
+.section-4-info-3{
+  display: flex;
+  margin-left: 2rem;
+  padding: 5px;
+}
+
+.section-4-grid-2{
+  text-align: center;
+}
+
+.section-4-info-3-redeem{
+  margin-left: auto;
+  margin-right: 28px;
+
+  width: fit-content;
+  padding: 2px;
+  border: 2px solid #fff;
+  border-radius: 15%;
+}
+.section-4-info-3-purchase{
+  margin-left: auto;
+  margin-right: 28px;
+  margin-bottom: 15px;
+  width: fit-content;
+  padding: 2px;
+  border: 2px solid #fff;
+  border-radius: 15%;
+}
