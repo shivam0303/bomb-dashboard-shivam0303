@@ -2,10 +2,26 @@ import React from "react";
 import {getDisplayBalance} from '../../../utils/formatBalance';
 import useBondsPurchasable from '../../../hooks/useBondsPurchasable';
 import useBondStats from '../../../hooks/useBondStats';
+// import useModal from '../../../../hooks/useModal';
+// import ExchangeModal from './ExchangeModal';
 
 const Section4 = () =>{
     const bondStat = useBondStats();
     const bondsPurchasable = useBondsPurchasable();
+
+    // const [onPresent, onDismiss] = useModal(
+    //     <ExchangeModal
+    //       title="Purchase"
+    //       description={priceDesc}
+    //       max={balance}
+    //       onConfirm={(value) => {
+    //         onExchange(value);
+    //         onDismiss();
+    //       }}
+    //       action={action}
+    //       tokenName={fromTokenName}
+    //     />,
+    //   );
 
     return (
         <>
@@ -49,7 +65,8 @@ const Section4 = () =>{
                         </div>
                         <hr />
                         <div className="section-4-info-3">
-                            <div>Redeem Bomb</div>
+                        {/* onClick={onPresent} */}
+                            <div >Redeem Bomb</div>
                             <div className="section-4-info-3-redeem">Redeem</div>
                         </div>
 

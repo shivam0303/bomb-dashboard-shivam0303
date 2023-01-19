@@ -11,6 +11,9 @@ import { roundAndFormatNumber } from '../../../0x';
 import usebShareStats from '../../../hooks/usebShareStats';
 import useBondStats from '../../../hooks/useBondStats';
 import BombImage from '../../../assets/img/bomb.png';
+import BbondImage from '../../../assets/img/bbond.png';
+import BshareImage from '../../../assets/img/bshare-200x200.png';
+import FoxImage from '../../../assets/img/metamask-fox.svg';
 
 
 const Section1 = () => {
@@ -94,25 +97,37 @@ const Section1 = () => {
                     ${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'}
                     {bombPriceInBNB ? " "+bombPriceInBNB : '-.----'} BNB
                     </td>
-                    <td>img</td>
+                    <td>
+                    <img src={FoxImage} alt="Bomb.money" style={{ maxHeight: '24px' }} />
+                    </td>
                   </tr>
                   <tr>
-                    <td>$BSHARE</td>
+                    <td>
+                    <img src={BshareImage} alt="Bomb.money" style={{ maxHeight: '24px' }} />
+                      $BSHARE
+                    </td>
                     <td>{roundAndFormatNumber(bShareCirculatingSupply, 2)}</td>
                     <td>{roundAndFormatNumber(bShareTotalSupply, 2)}</td>
                     <td>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'} 
                           {bSharePriceInBNB ? " "+ bSharePriceInBNB : '-.----'} BNB
                     </td>
-                    <td>img</td>
+                    <td>
+                    <img src={FoxImage} alt="Bomb.money" style={{ maxHeight: '24px' }} />
+                    </td>
                   </tr>
                   <tr>
-                    <td>$BBOND</td>
+                    <td>
+                    <img src={BbondImage} alt="Bomb.money" style={{ maxHeight: '24px' }} />
+                      $BBOND
+                    </td>
                     <td>{roundAndFormatNumber(tBondCirculatingSupply, 2)}</td>
                     <td>{roundAndFormatNumber(tBondTotalSupply, 2)}</td>
                     <td>
                         ${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}
                         {tBondPriceInBNB ? " "+ tBondPriceInBNB : '-.----'} BTC</td>
-                    <td>img</td>
+                    <td>
+                    <img src={FoxImage} alt="Bomb.money" style={{ maxHeight: '24px' }} />
+                    </td>
                   </tr>
                 </tbody>
               </table>

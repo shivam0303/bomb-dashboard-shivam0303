@@ -1,15 +1,19 @@
-import React from "react";
+import React,{useEffect} from "react";
 import useStatsForPool from '../../../hooks/useStatsForPool';
 import useBank from '../../../hooks/useBank';
 import {Typography} from '@material-ui/core';
 
-
 const Section3 = () =>{
+  useEffect(() => window.scrollTo(0, 0));
   const bankId = "BombBtcbLPBShareRewardPool"; 
   const bank = useBank(bankId);
   let statsOnPool = useStatsForPool(bank);
 
-    return(
+  const bankId_ = "BshareBnbLPBShareRewardPool"; 
+  const bank_ = useBank(bankId_);
+  let statsOnPool_ = useStatsForPool(bank_);
+
+    return (
         <>
         {console.log(statsOnPool)}
         <div className='section-3 body-margin'>
@@ -30,7 +34,7 @@ const Section3 = () =>{
           <div style={{display:"flex"}}>
             <div className="section-3-info-head-left">BOMB-BTCB</div>
             {/* recommended */}
-            <div className="section-3-info-head-right">TVL:$1,008,430</div>
+            <div className="section-3-info-head-right">TVL:$ {statsOnPool?.TVL}</div>
           </div>
           <hr />
 
@@ -63,7 +67,7 @@ const Section3 = () =>{
           <div style={{display:"flex"}}>
             <div className="section-3-info-head-left">BSHARE-BNB</div>
             {/* recommended */}
-            <div className="section-3-info-head-right">TVL:$1,008,430</div>
+            <div className="section-3-info-head-right">TVL:$ {statsOnPool_?.TVL}</div>
           </div>
           <hr />
 
@@ -71,7 +75,9 @@ const Section3 = () =>{
             <div className="bomb-farms-t1">
               <span>
                 <div>Daily Returns</div>
-                <div>2%</div>
+                <div>
+                <Typography>{bank_.closedForStaking ? '0.00' : statsOnPool_?.dailyAPR}%</Typography> 
+                </div>
               </span>
               <span>
                 <div>Your Stake</div>
@@ -94,7 +100,8 @@ const Section3 = () =>{
         </div>
 
         </>
-    );
+    )
 }
+
 
 export default Section3;
