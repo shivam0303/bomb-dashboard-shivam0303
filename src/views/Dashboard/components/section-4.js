@@ -2,6 +2,7 @@ import React from "react";
 import {getDisplayBalance} from '../../../utils/formatBalance';
 import useBondsPurchasable from '../../../hooks/useBondsPurchasable';
 import useBondStats from '../../../hooks/useBondStats';
+import BbondImage from '../../../assets/img/bbond.png';
 // import useModal from '../../../../hooks/useModal';
 // import ExchangeModal from './ExchangeModal';
 
@@ -25,14 +26,20 @@ const Section4 = () =>{
 
     return (
         <>
-            <div className='section-4 body-margin'>
-                <div className='section-4-header'>
+            <div className='section-4'>
+                <div className='section-4-header' style={{display:"flex"}}>
+                <img src={BbondImage} alt="Bomb.money" style={{ maxHeight: '48px' }} />
+                    
+                    <div>
                     <div className='section-2-boardroom-data-1'>
                         Bonds
                     </div>
                     <div className='section-4-data-2'>
                         BBOND can be purchased only on contraction periods, when TWAP of BOMB is below 1
                     </div>
+                    </div>
+
+                    
                 </div>
 
 
@@ -48,6 +55,7 @@ const Section4 = () =>{
                     <div className="section-4-grid-2">
                         <div>Available to redeem</div>
                         <div className="section-4-token-amount">
+                        <img src={BbondImage} alt="Bomb.money" style={{ maxHeight: '36px' }} />
                             {getDisplayBalance(bondsPurchasable, 18, 4)}
                         </div>
                     </div>

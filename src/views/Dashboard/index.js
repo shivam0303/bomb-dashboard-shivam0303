@@ -1,5 +1,6 @@
 import React from "react";
 import { createGlobalStyle } from 'styled-components';
+import Page from "../../components/Page";
 import Section1 from "./components/section-1"
 import Section2 from './components/section-2';
 import Section3 from './components/section-3';
@@ -21,7 +22,9 @@ const BackgroundImage = createGlobalStyle`
 const Dashboard = () => {
 
 return(
+  <Page>
   <div className="App">
+    
     <BackgroundImage />
 
     {/* SECTION 1 */}
@@ -37,8 +40,9 @@ return(
 
     {/* SECTION 4 */}
     {Section4()}
-
+    
   </div>
+  </Page>
   );
 };
 

@@ -8,6 +8,8 @@ import useStakedBalanceOnBoardroom from '../../../hooks/useStakedBalanceOnBoardr
 import useStakedTokenPriceInDollars from '../../../hooks/useStakedTokenPriceInDollars';
 import useBombFinance from '../../../hooks/useBombFinance';
 import DiscordImage from '../../../assets/img/discord.png';
+import DocsImage from '../../../assets/img/docs2.png';
+import BshareImage from '../../../assets/img/bshares.png';
 
 const Section2 = () => {
   const bombFinance = useBombFinance();
@@ -35,7 +37,7 @@ const Section2 = () => {
 
   return (
     <>
-      <div className="section-2 body-margin">
+      <div className="section-2">
 
         <div className="section-2-left">
 
@@ -46,23 +48,36 @@ const Section2 = () => {
               <img src={DiscordImage} alt="Discord" style={{ maxHeight: '24px' }} />
               Chat on Discord
             </div>
-            <div className="section-2-docs ">Read Docs</div>
+            <div className="section-2-docs ">
+              <img src={DocsImage} alt="Docs" style={{ maxHeight: '24px' }} />
+              Read Docs</div>
           </div>
 
           <div className="section-2-boardroom ">
-            <div className="section-2-boardroom-header ">
-              <div className='section-2-boardroom-data-1'>Boardroom</div>
 
-              {/* add recommended */}
 
-              <div className='section-2-boardroom-data'>
-                <div className='section-2-boardroom-data-2'>Stake BSHARE and earn BOMB every epoch</div>
+            <div className="section-2-boardroom-header" style={{ display: 'flex' }}>
+              <img src={BshareImage} alt="icon" style={{ maxHeight: '48px' }} />
 
-                {/* UPDATE TVL  */}
-                <div className='section-2-boardroom-data-3'>TVL:$1,008,430</div>
+              <div style={{ width: '100%' }}>
+                <div style={{ display: 'flex' }}>
+                  <div className='section-2-boardroom-data-1'>
+                    Boardroom
+                  </div>
+                </div>
+
+                {/* add recommended */}
+
+                <div className='section-2-boardroom-data'>
+                  <div className='section-2-boardroom-data-2'>Stake BSHARE and earn BOMB every epoch</div>
+
+                  {/* UPDATE TVL  */}
+                  <div className='section-2-boardroom-data-3'>TVL:$1,008,430</div>
+                </div>
               </div>
-              <hr />
             </div>
+<hr/>
+
 
             <div style={{ display: "flex", margin: "2rem" }}>
               <div className="section-2-boardroom-data-4">
