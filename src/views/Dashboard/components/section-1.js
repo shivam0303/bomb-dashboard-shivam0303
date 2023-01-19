@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useState, useMemo } from "react";
 import useCurrentEpoch from '../../../hooks/useCurrentEpoch';
 import ProgressCountdown from './ProgressCountdown';
 import moment from 'moment';
@@ -18,6 +18,9 @@ import useBombFinance from '../../../hooks/useBombFinance';
 
 
 const Section1 = () => {
+
+  const [hover, setHover] = useState(false);
+
   const bombFinance = useBombFinance();
   const tBondStats = useBondStats();
   const bombStats = useBombStats();
@@ -28,8 +31,6 @@ const Section1 = () => {
   const { to } = useTreasuryAllocationTimes();
   const TVL = useTotalValueLocked();
   const bombPriceInBNB = useMemo(() => (bombStats ? Number(bombStats.tokenInFtm).toFixed(4) : null), [bombStats]);
-
-
 
   const bombPriceInDollars = useMemo(
     () => (bombStats ? Number(bombStats.priceInDollars).toFixed(2) : null),
@@ -63,7 +64,6 @@ const Section1 = () => {
   );
   const tBondTotalSupply = useMemo(() => (tBondStats ? String(tBondStats.totalSupply) : null), [tBondStats]);
 
-
   return (
     <>
       <div className="section1">
@@ -95,13 +95,15 @@ const Section1 = () => {
                   <td>{roundAndFormatNumber(bombCirculatingSupply, 2)}</td>
                   <td>{roundAndFormatNumber(bombTotalSupply, 2)}</td>
                   <td>
-                    ${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'}
-                    {bombPriceInBNB ? " " + bombPriceInBNB : '-.----'} BNB
+                    <div>${bombPriceInDollars ? roundAndFormatNumber(bombPriceInDollars, 2) : '-.--'}</div>
+                    <div>{bombPriceInBNB ? " " + bombPriceInBNB : '-.----'} BNB</div>
                   </td>
                   <td>
-                    <img onClick={() => {
-                      bombFinance.watchAssetInMetamask('BOMB');
-                    }} src={FoxImage} alt="Bomb.money" style={{ maxHeight: '24px' }} />
+                    <img style={{ cursor: hover ? "pointer" : "default", maxHeight: '24px' }}
+                      onMouseEnter={() => setHover(true)}
+                      onMouseLeave={() => setHover(false)} onClick={() => {
+                        bombFinance.watchAssetInMetamask('BOMB');
+                      }} src={FoxImage} alt="Bomb.money" />
                   </td>
                 </tr>
                 <tr>
@@ -111,13 +113,16 @@ const Section1 = () => {
                   </td>
                   <td>{roundAndFormatNumber(bShareCirculatingSupply, 2)}</td>
                   <td>{roundAndFormatNumber(bShareTotalSupply, 2)}</td>
-                  <td>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'}
-                    {bSharePriceInBNB ? " " + bSharePriceInBNB : '-.----'} BNB
+                  <td>
+                    <div>${bSharePriceInDollars ? bSharePriceInDollars : '-.--'}</div>
+                    <div> {bSharePriceInBNB ? " " + bSharePriceInBNB : '-.----'} BNB</div>
                   </td>
                   <td>
-                    <img onClick={() => {
-                      bombFinance.watchAssetInMetamask('BSHARE');
-                    }} src={FoxImage} alt="Bomb.money" style={{ maxHeight: '24px' }} />
+                    <img style={{ cursor: hover ? "pointer" : "default", maxHeight: '24px' }}
+                      onMouseEnter={() => setHover(true)}
+                      onMouseLeave={() => setHover(false)} onClick={() => {
+                        bombFinance.watchAssetInMetamask('BSHARE');
+                      }} src={FoxImage} alt="Bomb.money" />
                   </td>
                 </tr>
                 <tr>
@@ -128,12 +133,15 @@ const Section1 = () => {
                   <td>{roundAndFormatNumber(tBondCirculatingSupply, 2)}</td>
                   <td>{roundAndFormatNumber(tBondTotalSupply, 2)}</td>
                   <td>
-                    ${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}
-                    {tBondPriceInBNB ? " " + tBondPriceInBNB : '-.----'} BTC</td>
+                    <div>${tBondPriceInDollars ? tBondPriceInDollars : '-.--'}</div>
+                    <div>{tBondPriceInBNB ? " " + tBondPriceInBNB : '-.----'} BTC</div>
+                    </td>
                   <td>
-                    <img onClick={() => {
-                      bombFinance.watchAssetInMetamask('BBOND');
-                    }} src={FoxImage} alt="Bomb.money" style={{ maxHeight: '24px' }} />
+                    <img style={{ cursor: hover ? "pointer" : "default", maxHeight: '24px' }}
+                      onMouseEnter={() => setHover(true)}
+                      onMouseLeave={() => setHover(false)} onClick={() => {
+                        bombFinance.watchAssetInMetamask('BBOND');
+                      }} src={FoxImage} alt="Bomb.money" />
                   </td>
                 </tr>
               </tbody>
