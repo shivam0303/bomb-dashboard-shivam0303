@@ -83,7 +83,7 @@ const Section2 = () => {
               <div className="section-2-boardroom-data-4">
                 <div>Daily Returns</div>
                 <div>
-                  {boardroomAPR.toFixed(2)}%
+                  {Math.round(boardroomAPR.toFixed(2)/360)}%
                 </div>
               </div>
 

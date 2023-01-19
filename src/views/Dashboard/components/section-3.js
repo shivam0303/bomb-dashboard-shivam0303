@@ -1,4 +1,4 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useMemo} from "react";
 import useStatsForPool from '../../../hooks/useStatsForPool';
 import useBank from '../../../hooks/useBank';
 import useEarnings from '../../../hooks/useEarnings';
@@ -6,6 +6,8 @@ import {Typography} from '@material-ui/core';
 import {getDisplayBalance} from '../../../utils/formatBalance';
 import Bombbtc from '../../../assets/img/bomb-btc-lp-512.png';
 import Bsharebnb from '../../../assets/img/bshare-bnb-lp-512.png';
+import useShareStats from '../../../hooks/usebShareStats';
+import useStakedBalance from '../../../hooks/useStakedBalance';
 
 const Section3 = () =>{
   useEffect(() => window.scrollTo(0, 0));
@@ -18,6 +20,32 @@ const Section3 = () =>{
   let statsOnPool_ = useStatsForPool(bank_);
 
   const earnings = useEarnings(bank.contract, bank.earnTokenName, bank.poolId);
+  const tShareStats = useShareStats();
+  const tokenStats = tShareStats;
+  const tokenPriceInDollars = useMemo(
+    () => (tokenStats ? Number(tokenStats.priceInDollars).toFixed(2) : null),
+    [tokenStats],
+  );
+  const earnedInDollars = (Number(tokenPriceInDollars) * Number(getDisplayBalance(earnings))).toFixed(2);
+  const stakedBalance = useStakedBalance(bank.contract, bank.poolId);
+  const earnedInDollars_ = (
+    Number(tokenPriceInDollars) * Number(getDisplayBalance(stakedBalance, bank.depositToken.decimal))
+  ).toFixed(2);
+
+  const earnings2 = useEarnings(bank.contract, bank.earnTokenName, bank.poolId);
+  const tShareStats2 = useShareStats();
+  const tokenStats2 = tShareStats2;
+  const tokenPriceInDollars2 = useMemo(
+    () => (tokenStats2 ? Number(tokenStats2.priceInDollars).toFixed(2) : null),
+    [tokenStats2],
+  );
+  const earnedInDollars2 = (Number(tokenPriceInDollars2) * Number(getDisplayBalance(earnings2))).toFixed(2);
+  const stakedBalance2 = useStakedBalance(bank_.contract, bank_.poolId);
+  const earnedInDollars_2 = (
+    Number(tokenPriceInDollars2) * Number(getDisplayBalance(stakedBalance2, bank_.depositToken.decimal))
+  ).toFixed(2);
+
+
 
     return (
         <>
@@ -57,15 +85,21 @@ const Section3 = () =>{
               </span>
               <span>
                 <div>Your Stake</div>
-                <div>124.21</div>
-                <div>=$1171.62</div>
+                <div>
+                  {getDisplayBalance(stakedBalance, bank.depositToken.decimal)}
+                </div>
+                <div>
+                {`≈ $${earnedInDollars_}`}
+                </div>
               </span>
               <span>
                 <div>Earned</div>
                 <div>
                 {getDisplayBalance(earnings)}
                 </div>
-                <div>=$1171.62</div>
+                <div>
+                {`≈ $${earnedInDollars}`}
+                </div>
               </span>
             </div>
             <div className="section-3-div">
@@ -92,14 +126,24 @@ const Section3 = () =>{
                 </div>
               </span>
               <span>
-                <div>Your Stake</div>
-                <div>124.21</div>
-                <div>=$1171.62</div>
+                <div>
+                Your Stake
+                </div>
+                <div>
+                {getDisplayBalance(stakedBalance, bank_.depositToken.decimal)}
+                </div>
+                <div>
+                {`≈ $${earnedInDollars_2}`}
+                </div>
               </span>
               <span>
                 <div>Earned</div>
-                <div>124.21</div>
-                <div>=$1171.62</div>
+                <div>
+                {getDisplayBalance(earnings2)}
+                </div>
+                <div>
+                {`≈ $${earnedInDollars2}`}
+                </div>
               </span>
             </div>
             <div className="section-3-div">
