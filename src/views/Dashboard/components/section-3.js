@@ -10,8 +10,12 @@ import BshareImage from '../../../assets/img/bshare-200x200.png';
 import useShareStats from '../../../hooks/usebShareStats';
 import useStakedBalance from '../../../hooks/useStakedBalance';
 
+import useHarvest from '../../../hooks/useHarvest';
+import useApprove, {ApprovalState} from '../../../hooks/useApprove';
+import {Button} from '@material-ui/core';
+import useRedeem from '../../../hooks/useRedeem';
+
 const Section3 = () => {
-  useEffect(() => window.scrollTo(0, 0));
   const bankId = "BombBtcbLPBShareRewardPool";
   const bank = useBank(bankId);
   let statsOnPool = useStatsForPool(bank);
@@ -46,9 +50,16 @@ const Section3 = () => {
     Number(tokenPriceInDollars2) * Number(getDisplayBalance(stakedBalance2, bank_.depositToken.decimal))
   ).toFixed(2);
 
+  const {onReward} = useHarvest(bank);
+  const [approveStatus, approve] = useApprove(bank.depositToken, bank.address);
+  const { onRedeem } = useRedeem(bank);
 
+  const {onReward_} = useHarvest(bank);
+  const [approveStatus_, approve_] = useApprove(bank.depositToken, bank.address);
+  const { onRedeem_ } = useRedeem(bank);
 
   return (
+    
     <>
       {/* {console.log(statsOnPool)} */}
       <div className='section-3'>
@@ -106,9 +117,39 @@ const Section3 = () => {
             </span>
           </div>
           <div className="section-3-div">
-            <div className='section-3-div-btn'>Deposit</div>
-            <div className='section-3-div-btn'>Withdraw</div>
-            <div className='section-3-div-btn'>Claim Reward</div>
+            
+            <Button style={{width:"fit-content", height:"fit-content"}}
+                disabled={
+                  bank.closedForStaking ||
+                  approveStatus === ApprovalState.PENDING ||
+                  approveStatus === ApprovalState.UNKNOWN
+                }
+                onClick={approve}
+                className={
+                  bank.closedForStaking ||
+                  approveStatus === ApprovalState.PENDING ||
+                  approveStatus === ApprovalState.UNKNOWN
+                    ? 'shinyButtonDisabled'
+                    : 'shinyButton'
+                }
+              >
+                Deposit
+              </Button>
+           
+            <Button style={{width:"fit-content", height:"fit-content"}} 
+            className="shinyButtonDisabled" 
+            onClick={onRedeem}>
+              Withdraw
+            </Button>
+            
+            <Button style={{width:"fit-content", height:"fit-content"}}
+              onClick={onReward}
+              disabled={earnings.eq(0)}
+              className={earnings.eq(0) ? 'shinyButtonDisabled' : 'shinyButton'}
+            >
+              Claim
+            </Button>
+            
           </div>
         </div>
 
@@ -152,9 +193,36 @@ const Section3 = () => {
             </span>
           </div>
           <div className="section-3-div">
-            <div className='section-3-div-btn'>Deposit</div>
-            <div className='section-3-div-btn'>Withdraw</div>
-            <div className='section-3-div-btn'>Claim Reward</div>
+          <Button style={{width:"fit-content", height:"fit-content"}}
+                disabled={
+                  bank_.closedForStaking ||
+                  approveStatus_ === ApprovalState.PENDING ||
+                  approveStatus_ === ApprovalState.UNKNOWN
+                }
+                onClick={approve_}
+                className={
+                  bank_.closedForStaking ||
+                  approveStatus_ === ApprovalState.PENDING ||
+                  approveStatus_ === ApprovalState.UNKNOWN
+                    ? 'shinyButtonDisabled'
+                    : 'shinyButton'
+                }
+              >
+                Deposit
+              </Button>
+           
+            <Button style={{width:"fit-content", height:"fit-content"}} className="shinyButtonDisabled" 
+            onClick={onRedeem_}>
+              Withdraw
+            </Button>
+            
+            <Button style={{width:"fit-content", height:"fit-content"}}
+              onClick={onReward_}
+              disabled={earnings.eq(0)}
+              className={earnings.eq(0) ? 'shinyButtonDisabled' : 'shinyButton'}
+            >
+              Claim
+            </Button>
           </div>
         </div>
 
