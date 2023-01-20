@@ -12,9 +12,11 @@ import DocsImage from '../../../assets/img/docs2.png';
 import BshareImage from '../../../assets/img/bshares.png';
 import BombImage from '../../../assets/img/bomb.png';
 import useHarvestFromBoardroom from '../../../hooks/useHarvestFromBoardroom';
-import useApprove, {ApprovalState} from '../../../hooks/useApprove';
+import useApprove, { ApprovalState } from '../../../hooks/useApprove';
+import CountUp from 'react-countup';
+import useTotalValueLocked from '../../../hooks/useTotalValueLocked';
 
-import { Button} from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import useRedeemOnBoardroom from '../../../hooks/useRedeemOnBoardroom';
 import useClaimRewardCheck from '../../../hooks/boardroom/useClaimRewardCheck';
 import useWithdrawCheck from '../../../hooks/boardroom/useWithdrawCheck';
@@ -24,12 +26,13 @@ import DepositModal from './DepositModal';
 import useStakeToBoardroom from '../../../hooks/useStakeToBoardroom';
 import useWithdrawFromBoardroom from '../../../hooks/useWithdrawFromBoardroom';
 import useModal from '../../../hooks/useModal';
-import {AddIcon, RemoveIcon} from '../../../components/icons';
+import { AddIcon, RemoveIcon } from '../../../components/icons';
 import IconButton from '../../../components/IconButton';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import styled from 'styled-components';
 
 const Section2 = () => {
+  const TVL = useTotalValueLocked();
   const bombFinance = useBombFinance();
   const bombStats = useBombStats();
   const earnings = useEarningsOnBoardroom();
@@ -54,15 +57,15 @@ const Section2 = () => {
   );
 
   const tokenBalance = useTokenBalance(bombFinance.BSHARE);
-  const {onReward} = useHarvestFromBoardroom();
+  const { onReward } = useHarvestFromBoardroom();
   const [approveStatus, approve] = useApprove(bombFinance.BSHARE, bombFinance.contracts.Boardroom.address);
   const { onRedeem } = useRedeemOnBoardroom();
 
   const canClaimReward = useClaimRewardCheck();
   const canWithdraw = useWithdrawCheck();
 
-  const {onStake} = useStakeToBoardroom();
-  const {onWithdraw} = useWithdrawFromBoardroom();
+  const { onStake } = useStakeToBoardroom();
+  const { onWithdraw } = useWithdrawFromBoardroom();
   const canWithdrawFromBoardroom = useWithdrawCheck();
 
   const [onPresentWithdraw, onDismissWithdraw] = useModal(
@@ -128,7 +131,9 @@ const Section2 = () => {
                 <div className='section-x-data'>
                   <div className='section-x-data-2'>Stake BSHARE and earn BOMB every epoch</div>
 
-                  <div className='section-x-data-3'>TVL:$1,008,430</div>
+                  <div className='section-x-data-3'>TVL:
+                    <CountUp style={{ fontSize: '18px' }} end={TVL} separator="," prefix="$" />
+                  </div>
                 </div>
               </div>
             </div>
@@ -148,7 +153,7 @@ const Section2 = () => {
               <div className="section-x-data-4">
                 <div>Your Stake:</div>
                 <div>
-                <img src={BshareImage} alt="icon" style={{ maxHeight: '16px' }} />
+                  <img src={BshareImage} alt="icon" style={{ maxHeight: '16px' }} />
                   {getDisplayBalance(stakedBalance)}
                 </div>
                 <div>= $
@@ -159,7 +164,7 @@ const Section2 = () => {
               <div className="section-x-data-4">
                 <div>Earned:</div>
                 <div>
-                <img src={BombImage} alt="Bomb.money" style={{ maxHeight: '16px' }} />
+                  <img src={BombImage} alt="Bomb.money" style={{ maxHeight: '16px' }} />
                   {getDisplayBalance(earnings)}
                 </div>
                 <div>= $
@@ -168,57 +173,61 @@ const Section2 = () => {
               </div>
               <div className="section-2-staked ">
                 <div className="section-2-staked-heading">
-                  total staked : 
+                  total staked :
                   <img src={BshareImage} alt="icon" style={{ maxHeight: '16px' }} />
                   {Math.round(getDisplayBalance(totalStaked))}
                 </div>
                 <div className='section-2-span-container'>
                   {/* <div onClick={approve} className='section-2-deposit hover-pointer'>deposit</div> */}
                   {/* <div onClick={onRedeem} className='section-2-deposit hover-pointer'>Withdraw</div> */}
-                  
-                  {approveStatus !== ApprovalState.APPROVED ? (
-                <Button style={{width:"fit-content", height:"fit-content"}}
-                  disabled={approveStatus !== ApprovalState.NOT_APPROVED}
-                  className={approveStatus === ApprovalState.NOT_APPROVED ? 'shinyButton' : 'shinyButtonDisabled'}
-                  
-                  onClick={approve}
-                >
-                  Deposit
-                </Button>
-              ) : (
-                <>
-                  <IconButton disabled={!canWithdrawFromBoardroom} onClick={onPresentWithdraw}>
-                    <RemoveIcon color={!canWithdrawFromBoardroom ? '' : 'yellow'} />
-                  </IconButton>
-                  <StyledActionSpacer />
-                  <IconButton onClick={onPresentDeposit}>
-                    <AddIcon color={!canWithdrawFromBoardroom ? '' : 'yellow'} />
-                  </IconButton>
-                </>
-              )}
-                  
-                  
-                  
-                  <Button style={{width:"fit-content", height:"fit-content"}}
-                    disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
-                    onClick={onRedeem}
-                    className={
-                      stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)
-                        ? 'shinyButtonDisabledSecondary'
-                        : 'shinyButtonSecondary'
-                    }
-                  >
-                    Withdraw
-                  </Button>
-                </div>
 
-                <Button
-                onClick={onReward}
-                className={earnings.eq(0) || !canClaimReward ? 'shinyButtonDisabled' : 'shinyButton'}
-                disabled={earnings.eq(0) || !canClaimReward}
-              >
-                Claim Reward
-              </Button>
+                  <div style={{width:"53%"}}>
+                    {approveStatus !== ApprovalState.APPROVED ? (
+                      <Button style={{ width: "fit-content", height: "fit-content" }}
+                        disabled={approveStatus !== ApprovalState.NOT_APPROVED}
+                        className={approveStatus === ApprovalState.NOT_APPROVED ? 'shinyButton' : 'shinyButtonDisabled'}
+
+                        onClick={approve}
+                      >
+                        Deposit
+                      </Button>
+                    ) : (
+                      <>
+                        <IconButton disabled={!canWithdrawFromBoardroom} onClick={onPresentWithdraw}>
+                          <RemoveIcon color={!canWithdrawFromBoardroom ? '' : 'yellow'} />
+                        </IconButton>
+                        <StyledActionSpacer />
+                        <IconButton onClick={onPresentDeposit}>
+                          <AddIcon color={!canWithdrawFromBoardroom ? '' : 'yellow'} />
+                        </IconButton>
+                      </>
+                    )}
+                  </div>
+
+                  <div>
+                    <Button style={{ width: "fit-content", height: "fit-content" }}
+                      disabled={stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)}
+                      onClick={onRedeem}
+                      className={
+                        stakedBalance.eq(0) || (!canWithdraw && !canClaimReward)
+                          ? 'shinyButtonDisabledSecondary'
+                          : 'shinyButtonSecondary'
+                      }
+                    >
+                      Withdraw
+                    </Button>
+                  </div>
+                </div>
+                      <div style={{marginTop:"16px", width:"100%"}}>
+                      <Button style={{ width: "80%"}}
+                  onClick={onReward}
+                  className={earnings.eq(0) || !canClaimReward ? 'shinyButtonDisabled' : 'shinyButton'}
+                  disabled={earnings.eq(0) || !canClaimReward}
+                >
+                  Claim Reward
+                </Button>
+                      </div>
+                
 
                 {/* <div onClick={onReward} className='section-2-claimrewards hover-pointer'>
                   Claim Rewards

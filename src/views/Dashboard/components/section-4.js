@@ -1,14 +1,30 @@
-import React from "react";
+import React,{useCallback} from "react";
 import { getDisplayBalance } from '../../../utils/formatBalance';
 import useBondsPurchasable from '../../../hooks/useBondsPurchasable';
 import useBondStats from '../../../hooks/useBondStats';
 import BbondImage from '../../../assets/img/bbond.png';
+import {Button} from '@material-ui/core';
+import useBombFinance from '../../../hooks/useBombFinance';
+import {useTransactionAdder} from '../../../state/transactions/hooks';
 // import useModal from '../../../../hooks/useModal';
 // import ExchangeModal from './ExchangeModal';
 
 const Section4 = () => {
     const bondStat = useBondStats();
     const bondsPurchasable = useBondsPurchasable();
+
+    const bombFinance = useBombFinance();
+    const addTransaction = useTransactionAdder();
+
+    const handleBuyBonds = useCallback(
+        async (amount) => {
+          const tx = await bombFinance.buyBonds(amount);
+          addTransaction(tx, {
+            summary: `Buy ${Number(amount).toFixed(2)} BBOND with ${amount} BOMB`,
+          });
+        },
+        [bombFinance, addTransaction],
+      );
 
     // const [onPresent, onDismiss] = useModal(
     //     <ExchangeModal
@@ -25,6 +41,7 @@ const Section4 = () => {
     //   );
 
     return (
+        
         <>
             <div className='section-4'>
                 <div className='section-4-header' style={{ display: "flex" }}>
@@ -69,13 +86,25 @@ const Section4 = () => {
                                     Bomb is over peg
                                 </div>
                             </div>
-                            <div className="section-4-info-3-purchase">Purchase</div>
+                            <div className="section-4-info-3-purchase">
+                                <Button style={{ width: "fit-content", height: "fit-content" }}
+                                    className="shinyButton"
+                                    onClick={handleBuyBonds}>
+                                    Purchase
+                                </Button>
+                            </div>
                         </div>
                         <hr />
                         <div className="section-4-info-3">
                             {/* onClick={onPresent} */}
                             <div >Redeem Bomb</div>
-                            <div className="section-4-info-3-redeem">Redeem</div>
+                            <div className="section-4-info-3-redeem">
+                                <Button style={{ width: "fit-content", height: "fit-content" }}
+                                    className="shinyButtonDisabled"
+                                    onClick={null}>
+                                    Redeem
+                                </Button>
+                            </div>
                         </div>
 
                     </div>

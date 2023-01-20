@@ -74,9 +74,14 @@ const Section3 = () => {
             </div>
           </div>
 
-          <div className="Bomb-Farms-claim">
-            Claim All
-          </div>
+          <Button style={{width:"15%", height:"fit-content", margin:"18px"}}
+              onClick={onReward}
+              disabled={earnings.eq(0)}
+              className={earnings.eq(0) ? 'shinyButtonDisabled' : 'shinyButton'}
+            >
+              Claim all
+            </Button>
+       
         </div>
 
         <div style={{ display: "flex" }}>
@@ -138,7 +143,9 @@ const Section3 = () => {
            
             <Button style={{width:"fit-content", height:"fit-content"}} 
             className="shinyButtonDisabled" 
-            onClick={onRedeem}>
+            onClick={onRedeem}
+            disabled={earnings.eq(0)}
+            >
               Withdraw
             </Button>
             
@@ -212,7 +219,9 @@ const Section3 = () => {
               </Button>
            
             <Button style={{width:"fit-content", height:"fit-content"}} className="shinyButtonDisabled" 
-            onClick={onRedeem_}>
+            onClick={onRedeem_}
+            disabled={earnings2.eq(0)}
+            >
               Withdraw
             </Button>
             

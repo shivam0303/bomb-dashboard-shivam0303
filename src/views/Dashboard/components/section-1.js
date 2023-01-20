@@ -168,9 +168,9 @@ const Section1 = () => {
             <div className="mid-text" style={{ height: "30%" }}>
               <div style={{ padding: "5px" }}>Live TWAP : {scalingFactor}</div>
               <div>TVL :
-                <CountUp style={{ fontSize: '10px' }} end={TVL} separator="," prefix="$" />
+                <CountUp style={{ fontSize: '14px' }} end={TVL} separator="," prefix="$" />
               </div>
-              <div style={{ padding: "5px" }}>Last Epoch TWAP : 1.17</div>
+              <div style={{ padding: "5px" }}>Last Epoch TWAP : {scalingFactor}</div>
             </div>
           </div>
         </div>
