@@ -30,6 +30,7 @@ import { AddIcon, RemoveIcon } from '../../../components/icons';
 import IconButton from '../../../components/IconButton';
 import useTokenBalance from '../../../hooks/useTokenBalance';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Section2 = () => {
   const TVL = useTotalValueLocked();
@@ -102,15 +103,25 @@ const Section2 = () => {
               &gt; Read Investment Strategy
             </a>
           </div>
-          <div className="section-2-invest">Invest Now</div>
+          <Link to="../../Farm">
+            <div className="section-2-invest">Invest Now</div>
+          </Link>
+          
+          
           <div style={{ display: "flex" }}>
-            <div className="section-2-discord section-2-dis-doc">
-              <img src={DiscordImage} alt="Discord" style={{ maxHeight: '24px' }} />
+          <a className="section-2-discord section-2-dis-doc" href="https://discord.com/invite/94Aa4wSz3e">
+              <div >
+              <img src={DiscordImage} alt="Discord" style={{ maxHeight: '24px'}} />
               Chat on Discord
             </div>
-            <div className="section-2-docs section-2-dis-doc">
-              <img src={DocsImage} alt="Docs" style={{ maxHeight: '24px' }} />
-              Read Docs</div>
+            </a>
+          <a className="section-2-docs section-2-dis-doc" href="https://docs.bomb.money/welcome-start-here/readme">
+          <div >
+              <img src={DocsImage} alt="Docs" style={{ maxHeight: '24px',paddingRight:"5px" }} />
+              Read Docs
+              </div>
+          </a>
+            
           </div>
 
           <div className="section-2-boardroom ">

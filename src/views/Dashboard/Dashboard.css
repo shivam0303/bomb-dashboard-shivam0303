@@ -19,11 +19,12 @@ a {
 }
 
 a:link, a:visited {
-  color:  #9EE6FF;
+  color:  white;
 }
 
 a:hover {
-  color: red;
+  color: white;
+  opacity:70%
 }
 
 .hover-pointer:hover {
