@@ -1,4 +1,4 @@
-import React,{useCallback} from "react";
+import React,{useCallback,useMemo} from "react";
 import { getDisplayBalance } from '../../../utils/formatBalance';
 import useBondsPurchasable from '../../../hooks/useBondsPurchasable';
 import useBondStats from '../../../hooks/useBondStats';
@@ -6,16 +6,21 @@ import BbondImage from '../../../assets/img/bbond.png';
 import {Button} from '@material-ui/core';
 import useBombFinance from '../../../hooks/useBombFinance';
 import {useTransactionAdder} from '../../../state/transactions/hooks';
+import useModal from '../../../hooks/useModal';
+import ExchangeModal from './ExchangeModal';
+import useTokenBalance from '../../../hooks/useTokenBalance';
 // import useModal from '../../../../hooks/useModal';
 // import ExchangeModal from './ExchangeModal';
 
 const Section4 = () => {
-    const bondStat = useBondStats();
-    const bondsPurchasable = useBondsPurchasable();
-
+    const bondStat = useBondStats(); 
     const bombFinance = useBombFinance();
+    const bondsPurchasable = useBondsPurchasable();
+    const balance = useTokenBalance(bombFinance.BOMB);
+    const balance_ = useTokenBalance(bombFinance.BBOND);
+   
     const addTransaction = useTransactionAdder();
-
+    const isBondPurchasable = useMemo(() => Number(bondStat?.tokenInFtm) < 1.01, [bondStat]);
     const handleBuyBonds = useCallback(
         async (amount) => {
           const tx = await bombFinance.buyBonds(amount);
@@ -24,6 +29,44 @@ const Section4 = () => {
           });
         },
         [bombFinance, addTransaction],
+      );
+
+      const [onPresent, onDismiss] = useModal(
+        <ExchangeModal
+          title={"Purchase"}
+          description={!isBondPurchasable
+            ? 'BOMB is over peg'
+            : getDisplayBalance(bondsPurchasable, 18, 4) + ' BBOND available for purchase'}
+          max={balance}
+          onConfirm={(value) => {
+            handleBuyBonds(value);
+            onDismiss();
+          }}
+          action={"Purchase"}
+          tokenName={"BOMB"}
+        />,
+      );
+
+      const handleRedeemBonds = useCallback(
+        async (amount) => {
+          const tx = await bombFinance.redeemBonds(amount);
+          addTransaction(tx, {summary: `Redeem ${amount} BBOND`});
+        },
+        [bombFinance, addTransaction],
+      );
+      const bondBalance = useTokenBalance(bombFinance?.BBOND);
+      const [onPresent_, onDismiss_] = useModal(
+        <ExchangeModal
+          title={"Redeem"}
+          description={`${getDisplayBalance(bondBalance)} BBOND Available in wallet`}
+          max={balance_}
+          onConfirm={(value) => {
+            handleRedeemBonds(value); 
+            onDismiss_();
+          }}
+          action={"Redeem"}
+          tokenName={"BBOND"}
+        />,
       );
 
     // const [onPresent, onDismiss] = useModal(
@@ -89,7 +132,7 @@ const Section4 = () => {
                             <div className="section-4-info-3-purchase">
                                 <Button style={{ width: "fit-content", height: "fit-content" }}
                                     className="shinyButton"
-                                    onClick={handleBuyBonds}>
+                                    onClick={onPresent}>
                                     Purchase
                                 </Button>
                             </div>
@@ -100,8 +143,8 @@ const Section4 = () => {
                             <div >Redeem Bomb</div>
                             <div className="section-4-info-3-redeem">
                                 <Button style={{ width: "fit-content", height: "fit-content" }}
-                                    className="shinyButtonDisabled"
-                                    onClick={null}>
+                                    className="shinyButton"
+                                    onClick={onPresent_}>
                                     Redeem
                                 </Button>
                             </div>

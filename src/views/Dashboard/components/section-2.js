@@ -126,7 +126,6 @@ const Section2 = () => {
 
           <div className="section-2-boardroom ">
 
-
             <div className="section-x-header" style={{ display: 'flex' }}>
               <img src={BshareImage} alt="icon" style={{ maxHeight: '48px' }} />
 

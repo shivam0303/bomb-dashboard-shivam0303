@@ -24,12 +24,12 @@ a:link, a:visited {
 
 a:hover {
   color: white;
-  opacity:70%
+  border-color:white;
 }
 
 .hover-pointer:hover {
   cursor: pointer;
-  opacity :80%;
+  border-color:white;
 }
 
 .mid-text{
