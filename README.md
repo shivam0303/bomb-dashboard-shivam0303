@@ -24,3 +24,7 @@ npx prettier --write .
 - **contexts** contains global contexts.
 - **hooks** contains generic hooks.
 - **utils** contains generic utilities functions.
+
+## Contribution
+created and pushed changes to 
+src -> views -> Dashboard
